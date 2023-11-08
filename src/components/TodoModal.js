@@ -47,7 +47,9 @@ const TodoModal = ({ type, modalOpen, setModalOpen, todo }) => {
     if (title === "") {
       toast.error("Please enter a title");
       return;
-    } else if (title && status) {
+    }
+
+    if (title && status) {
       if (type === "add") {
         dispatch(
           addTodo({
@@ -57,6 +59,7 @@ const TodoModal = ({ type, modalOpen, setModalOpen, todo }) => {
             time: format(new Date(), "p,MM/dd/yyyy"),
           })
         );
+        setTitle("");
         toast.success("Task added successfully");
       } else if (type === "update") {
         if (todo.title !== title || todo.status !== status) {
